@@ -1,31 +1,26 @@
-import { useState } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Index from './components/Index'
-import About from './components/About'
-import Company from './components/Company'
-import Features from './components/Features'
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Header from './components/Header.jsx'
+import Footer from './components/Footer.jsx'
+import Index from './pages/Index.jsx'
+import About from './pages/About.jsx'
+import Company from './pages/Company.jsx'
+import Features from './pages/Features.jsx'
 import './App.css'
 
-function App() {
-  const [showAddTask, setShowAddTask] = useState(false)
 
+
+function App(){
   return (
-    <Router>
-      <div className="container">
-        <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask} />
-        <Switch>
-          <Route path="/" exact component={Index} />
-          <Route path="/about" component={About} />
-          <Route path="/company" component={Company} />
-          <Route path="/features" component={Features} />
-        </Switch>
-        <Footer />
-      </div>
-    </Router>
-  )
+    <BrowserRouter>
+      <Header />
+      <Routes>
+      <Route path="/" element={<Index />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/company" element={<Company />} />
+          <Route path="/features" element={<Features />} />
+      </Routes>
+      <Footer/>
+    </BrowserRouter>
+  );
 }
-
-export default App
+export default App;
